@@ -1,3 +1,8 @@
 __init__.pyc
 settings.pyc
 local_settings.py
+checklist/migrations/0001_initial.py
+checklist/migrations/0001_initial.pyc
+checklist/migrations/__init__.py
+local_settings.pyc
+surveyor.db
