@@ -27,18 +27,15 @@ class Checklist(models.Model):
 	
 	def __unicode__(self):
 		return self.title	
-
-		
+	
 class ChecklistItem(models.Model):
 	checklist = models.ForeignKey(Checklist)
 	task = models.ForeignKey(Task)
 	checked = models.BooleanField(default=False)
 	
 	def __unicode__(self):
-		return self.checklist.title + ' : '+self.task.name
-	
+		return u"%s : %s" % (self.checklist.title, self.task.name)
 
-	 	
 class Assignment(models.Model):
 	surveyor = models.ForeignKey(User, related_name='assigned_to')
 	checklist = models.ForeignKey(Checklist)
@@ -46,5 +43,4 @@ class Assignment(models.Model):
 	date = models.DateField() 
 	
 	def __unicode__(self):
-		return self.surveyor.last_name +' : '+self.checklist.title
-
+		return u"%s : %s" % (self.surveyor.last_name, self.checklist.title)
