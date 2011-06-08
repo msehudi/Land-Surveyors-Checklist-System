@@ -8,7 +8,7 @@ class ItemInline(admin.StackedInline):
 class ChecklistAdmin(admin.ModelAdmin):
 	fieldsets = [
 		(None,    {'fields' : ['title','fileNumber','description','site']}),
-		('Dates', {'fields' : ['created_date', 'due_date']})
+		('Dates', {'fields' : [ 'due_date']})
 	]
 	inlines = [ItemInline]
 	
