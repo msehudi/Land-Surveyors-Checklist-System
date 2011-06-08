@@ -11,9 +11,10 @@
 	<h1>Inbox</h1>
 	
 	<table border='1'>
-	<tr><th>Site</th><th>Date</th></tr>
+	<tr><th>Site</th><th>Location</th><th>Date</th></tr>
 	{% for assignment in assignments %}
-	<tr><td><a href="{% url assignment assignment.id %}">{{ assignment.checklist.site.location }}</td>
+	<tr><td><a href="{% url assignment assignment.id %}">{{ assignment.checklist.site.name }}</td>
+		<td>{{ assignment.checklist.site.location }}</td>
 		<td>{{ assignment.checklist.due_date }}</td></tr>
 	{% empty %}
 	<tr><td colspan="2">You have no assignments</td></tr>

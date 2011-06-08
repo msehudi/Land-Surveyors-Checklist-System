@@ -9,5 +9,5 @@ urlpatterns = patterns('',
 	url(r'^inbox', inbox, name='inbox'),
 	#url(r'^assignment', showAssignment, name='assignment'),
 	url(r'^assignment/(?P<assignmentID>\d+)/$', showAssignment, name='assignment'),
-	
+	url(r'^assignment/(?P<assignmentID>\d+)/checklist/(?P<checklistID>\d+)/$', showChecklist, name='checklist'),
 )

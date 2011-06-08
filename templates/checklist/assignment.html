@@ -14,7 +14,7 @@
 {% block content %}
 
 	<h1>Assignment</h1>
-	
+	<a href="{% url checklist assignment.id checklist.id %}">View Checklist</a>
 	<p>Checklist: {{checklist.title}}</p>
 	<p>Assigned by: {{manager.first_name}} {{manager.last_name}}</p>
 	<p>Checklist Due: {{due_date}}</p>

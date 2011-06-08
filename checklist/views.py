@@ -65,5 +65,15 @@ def showAssignment(request, assignmentID):
 	 		'map_url':map_url, 'location':location, 'currentWeather' : currentDict})
 
 @login_required
+def showChecklist(request, assignmentID, checklistID):
+	checklist = get_object_or_404(Checklist, pk=checklistID)
+	assignment = get_object_or_404(Assignment, pk=assignmentID)
+	tasks = checklist.tasks.all()
+	if assignment.checklist != checklist or assignment.surveyor != request.user:
+		Http404()
+			
+	return render_to_response("checklist/checklist.html", {'assignment':assignment,'checklist':checklist, 'tasks':tasks})
+
+@login_required
 def surveyorInbox(request):
 	pass
