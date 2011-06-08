@@ -1,0 +1,44 @@
+body
+{
+	background: #81A594;
+}
+
+a
+{
+	color: F5A529;
+}
+
+#loginBox
+{
+	width: 250px;
+	height: auto;
+	background: F6F6EC;
+	font-family: Helvetica, Arial;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	margin-bottom: auto;
+	text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 1px;
+	padding-bottom: 2px;
+	
+}
+
+#wrapper
+{
+	background: F6F6EC;
+	width: 924px;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 15px;
+}
+
+h1
+{
+	color: #00628B;
+}
+
+
