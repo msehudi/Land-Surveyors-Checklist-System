@@ -13,7 +13,7 @@
 	<table border='1'>
 	<tr><th>Site</th><th>Date</th></tr>
 	{% for assignment in assignments %}
-	<tr><td><a href="{% url assignment %}?id={{assignment.id}}">{{ assignment.checklist.site.location }}</td>
+	<tr><td><a href="{% url assignment assignment.id %}">{{ assignment.checklist.site.location }}</td>
 		<td>{{ assignment.checklist.due_date }}</td></tr>
 	{% empty %}
 	<tr><td colspan="2">You have no assignments</td></tr>
