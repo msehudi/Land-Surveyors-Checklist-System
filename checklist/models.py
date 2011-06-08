@@ -45,7 +45,7 @@ class ChecklistItem(models.Model):
 	task = models.ForeignKey(Task)
 	
 	checked = models.BooleanField(default=False)
-	user = models.ForeignKey(User)
+	user = models.ForeignKey(User, null=True)
 	
 	def __unicode__(self):
 		return u"%s : %s" % (self.checklist.title, self.task.name)
