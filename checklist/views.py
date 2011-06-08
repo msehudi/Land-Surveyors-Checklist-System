@@ -40,7 +40,12 @@ def showAssignment(request, assignmentID):
 	location_slug = "%s,%s,%s" % (slugify(location.address),
 	 									slugify(location.city), 
 										slugify(location.province))
-	map_url = "http://maps.google.com/maps/api/staticmap?center=%s&zoom=14&size=512x512&maptype=roadmap&sensor=false&markers=color:blue|label:S|%s" % (location_slug,location_slug)
+	map_width = '640'
+	map_height = '640'
+	map_url = "http://maps.google.com/maps/api/staticmap" + \
+			"?center=%s&zoom=14&size=%sx%s&maptype=roadmap&sensor=false&markers=color:blue|label:S|%s" \
+			% (location_slug, map_width, map_height, location_slug)
+			
 	weather_url = "http://www.google.com/ig/api?weather=%s" % location_slug
 	print weather_url
 	
@@ -72,7 +77,8 @@ def showChecklist(request, assignmentID, checklistID):
 	if assignment.checklist != checklist or assignment.surveyor != request.user:
 		Http404()
 			
-	return render_to_response("checklist/checklist.html", {'assignment':assignment,'checklist':checklist, 'tasks':tasks})
+	return render_to_response("checklist/checklist.html",
+	 {'assignment':assignment,'checklist':checklist, 'tasks':tasks}, context_instance=RequestContext(request))
 
 @login_required
 def surveyorInbox(request):

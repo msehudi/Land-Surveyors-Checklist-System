@@ -10,7 +10,7 @@
 {% block content %}
 	<h1>Inbox</h1>
 	
-	<table border='1'>
+	<table border='1' cellpadding = "5" width="914">
 	<tr><th>Site</th><th>Location</th><th>Date</th></tr>
 	{% for assignment in assignments %}
 	<tr><td><a href="{% url assignment assignment.id %}">{{ assignment.checklist.site.name }}</td>

@@ -1,6 +1,7 @@
 body
 {
 	background: #81A594;
+	font-family: Helvetica, Arial, sans-serif;
 }
 
 a
@@ -12,8 +13,7 @@ a
 {
 	width: 250px;
 	height: auto;
-	background: F6F6EC;
-	font-family: Helvetica, Arial;
+	background: F6F6EC;	
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 30px;
@@ -36,7 +36,18 @@ a
 	padding: 15px;
 }
 
-h1
+#footer
+{
+	color: F6F6EC;
+	font-size: 8pt;
+	margin-left: auto;
+	margin-right: auto;
+	width: 924px;
+	text-align: center;
+}
+
+
+h1,h2,h3,h4,h5
 {
 	color: #00628B;
 }

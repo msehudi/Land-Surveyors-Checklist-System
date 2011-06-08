@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% load breadcrumbs %}
+
+{% block breadcrumbs %}
+{% breadcrumb_url 'dashboard' dashboard %}
+{% breadcrumb_url 'inbox' inbox %}
+{% breadcrumb_url 'assignment' assignment assignment.id %}
+{% breadcrumb_url 'checklist' checklist assignment.id checklist.id %}
+
+
+
+{% endblock %}
+
+
+{% block content %}
+
+<form method="post" action="#">
+	{% csrf_token %}
+	<table border="1" cellpadding="2" width="914">
+		<tr><th>Status</th><th>Description</th></tr>
+		{% for task in tasks %}
+		<tr><td>Yes <input type="radio" name="{{task.id}}" value="{{task.id}}_yes" />
+			 No <input type="radio" name="{{task.id}}" value="{{task.id}}_no" />
+			 N/A <input type="radio" name="{{task.id}}" value="{{task.id}}_na" /></td>
+			<td>{{task.description}}</td></tr>
+		{% empty %}
+		<tr><td colspan="2">This checklist is empty!</td></tr>
+		{% endfor %}
+	</table>
+	{% if tasks %}
+		<br />
+		<center><input type="submit" value="Submit Checklist For Review" /></center>
+	{% endif %}
+</form>
+
+{% endblock %}
