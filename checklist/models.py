@@ -3,10 +3,20 @@ from django.contrib.auth.models import User
 from datetime import datetime, timedelta
 
 class Site(models.Model):
-	location = models.CharField(max_length=300)
+	name = models.CharField(max_length=100, default="",blank=True)
+	location = models.ForeignKey('Location')
 	
 	def __unicode__(self):
-		return self.location
+		return self.name
+
+class Location(models.Model):
+	address = models.CharField(max_length=300)
+	city = models.CharField(max_length=50)
+	postalCode = models.CharField(max_length=7)
+	province = models.CharField(max_length=40)
+	
+	def __unicode__(self):
+		return u"%s, %s" % (self.address, self.city)
 
 class Task(models.Model):
 	name = models.CharField(max_length=200)
@@ -23,7 +33,7 @@ class Checklist(models.Model):
 	site = models.ForeignKey(Site)
 	created_date = models.DateTimeField('created date')
 	tasks = models.ManyToManyField(Task, through='ChecklistItem')
-	due_date = models.DateTimeField('due date')
+	due_date = models.DateTimeField('due date', blank=True)
 	
 	def __unicode__(self):
 		return self.title	
