@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'surveyor.views.home', name='home'),
     # url(r'^surveyor/', include('surveyor.foo.urls')),
 
+	
 	url(r'^checklist/', include('checklist.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

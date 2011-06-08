@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load breadcrumbs %}
+
+{% block breadcrumbs %}
+{% breadcrumb_url 'dashboard' dashboard %}
+{% breadcrumb_url 'inbox' inbox %}
+{% breadcrumb_url 'assignment' assignment assignment.id %}
+
+
+{% endblock %}
+
+
+{% block content %}
+
+	<h1>Assignment</h1>
+	<a href="{% url checklist assignment.id checklist.id %}">View Checklist</a>
+	<p>Checklist: {{checklist.title}}</p>
+	<p>Assigned by: {{manager.first_name}} {{manager.last_name}}</p>
+	<p>Checklist Due: {{due_date}}</p>
+	<p>Site: {{checklist.site.name}}</p>
+	<div style="margin-left:80px;margin-top:20px;margin-bottom:20px">
+		<h3>Weather</h3>
+		<table cellpadding="10" >
+			<tr ><td>{{currentWeather.condition}} <br /><img src="http://google.ca/{{currentWeather.icon}}" /></td>
+				<td >{{currentWeather.temp_c}} C&deg;</td>
+				<td >{{currentWeather.humidity}}</td>
+				<td >{{currentWeather.wind_condition}}</td>
+			</tr>
+		</table>
+				
+	
+		<br />
+		<h3>Map</h3>
+		<img src="{{ map_url }}" alt="Map Unavailable" />
+	</div>
+	
+
+{% endblock %}
