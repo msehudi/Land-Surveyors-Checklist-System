@@ -11,8 +11,9 @@ from django.template.defaultfilters import slugify
 from httplib2 import Http
 from urllib import urlencode
 
-from xml.dom import minidom
 from xml.etree import ElementTree 
+
+
 
 @login_required
 def dashboard(request):
@@ -25,8 +26,8 @@ def inbox(request):
 	return render_to_response('checklist/inbox.html', {'assignments' : assignments, 'user': request.user})
 
 @login_required
-def showAssignment(request):
-	assignment = get_object_or_404(Assignment, pk=request.REQUEST['id'])
+def showAssignment(request, assignmentID):
+	assignment = get_object_or_404(Assignment, pk=assignmentID)
 	manager = assignment.manager
 	surveyor = assignment.surveyor
 	checklist = assignment.checklist
@@ -60,7 +61,7 @@ def showAssignment(request):
 	# multiple surveyors to work on the same checklist via their seperate assignments)?
 	
 	return render_to_response('checklist/assignment.html',
-	 	{'manager' : manager, 'surveyor': surveyor, 'checklist' : checklist, 'due_date' : date,
+	 	{'assignment' : assignment, 'manager' : manager, 'surveyor': surveyor, 'checklist' : checklist, 'due_date' : date,
 	 		'map_url':map_url, 'location':location, 'currentWeather' : currentDict})
 
 @login_required

@@ -1,9 +1,21 @@
 {% extends "base.html" %}
 
+{% load breadcrumbs %}
+
+{% block breadcrumbs %}
+{% breadcrumb_url 'dashboard' dashboard %}
+{% breadcrumb_url 'inbox' inbox %}
+{% breadcrumb_url 'assignment' assignment assignment.id %}
+
+
+{% endblock %}
+
+
 {% block content %}
 
-	<h1>{{checklist.title}}</h1>
+	<h1>Assignment</h1>
 	
+	<p>Checklist: {{checklist.title}}</p>
 	<p>Assigned by: {{manager.first_name}} {{manager.last_name}}</p>
 	<p>Checklist Due: {{due_date}}</p>
 	<p>Site: {{checklist.site.name}}</p>

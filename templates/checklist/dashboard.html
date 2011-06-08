@@ -1,5 +1,9 @@
 {% extends "base.html" %}
  
+{% block breadcrumbs %}
+{% breadcrumb_url 'dashboard' dashboard %}
+{% endblock %}
+
 {% block content %}
 	<h1>Dashboard</h1>
 	

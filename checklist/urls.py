@@ -7,5 +7,7 @@ urlpatterns = patterns('',
 	url(r'^logout/$', logout, name='logout'),
 	url(r'^dashboard', dashboard, name='dashboard'),
 	url(r'^inbox', inbox, name='inbox'),
-	url(r'^assignment', showAssignment, name='assignment'),
+	#url(r'^assignment', showAssignment, name='assignment'),
+	url(r'^assignment/(?P<assignmentID>\d+)/$', showAssignment, name='assignment'),
+	
 )
