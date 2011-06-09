@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.core.urlresolvers import reverse
 from django.template import Context,RequestContext
 from models import *
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters import slugify
 
@@ -12,7 +12,6 @@ from httplib2 import Http
 from urllib import urlencode
 
 from xml.etree import ElementTree 
-
 
 
 @login_required
@@ -79,6 +78,29 @@ def showChecklist(request, assignmentID, checklistID):
 			
 	return render_to_response("checklist/checklist.html",
 	 {'assignment':assignment,'checklist':checklist, 'tasks':tasks}, context_instance=RequestContext(request))
+
+@login_required
+def submitChecklist(request):
+	if request.method == 'POST':
+		assignment_id = request.POST['assignment']
+		checklist_id = request.POST['checklist']
+		assignment = Assignment.objects.get(pk=assignment_id)
+		checklist = Checklist.objects.get(pk=checklist_id)
+		
+		assignment.submitted = True
+		assignment.save()
+		
+		# here is where we'll have logic to check if all assignments for a 
+		# particular checklist are completed (support for multiple surveyors
+		# on one checklist).  For now just say the full checklist is complete
+		checklist.completed = True
+		checklist.save()
+		
+		return render_to_response('checklist/dashboard.html',
+		 {'user': request.user, 'status_message':'Assignment Submitted'})
+	else:
+		return render_to_response('checklist/dashboard.html',
+		 {'user': request.user, 'error_message':'Invalid Assignment Submission'})
 
 @login_required
 def surveyorInbox(request):

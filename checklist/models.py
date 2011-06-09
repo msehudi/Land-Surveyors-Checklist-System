@@ -36,6 +36,7 @@ class Checklist(models.Model):
 	tasks = models.ManyToManyField(Task, through='ChecklistItem')
 	created_date = models.DateTimeField('created date', auto_now_add=True)
 	due_date = models.DateTimeField('due date', blank=True)
+	completed = models.BooleanField(default=False)
 	
 	def __unicode__(self):
 		return self.title	
@@ -55,6 +56,8 @@ class Assignment(models.Model):
 	checklist = models.ForeignKey(Checklist)
 	manager = models.ForeignKey(User, related_name='assigned_by')
 	date = models.DateField() 
+	submitted = models.BooleanField(default=False)
+	approved = models.BooleanField(default=False)
 	
 	def __unicode__(self):
 		return u"%s : %s" % (self.surveyor.last_name, self.checklist.title)

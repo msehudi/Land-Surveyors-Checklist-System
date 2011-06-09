@@ -8,6 +8,8 @@
 {% block content %}
 	<h1>Dashboard</h1>
 	
+	{% if status_message %}<h3 class="status">{{status_message}}</h3>{% endif %}
+	{% if error_message %}<h3 class="error">{{error_message}}</h3>{% endif %}
 
 	<a href="{% url inbox %}">inbox</a>
 	

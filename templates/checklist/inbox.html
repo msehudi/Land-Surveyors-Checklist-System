@@ -11,11 +11,21 @@
 	<h1>Inbox</h1>
 	
 	<table border='1' cellpadding = "5" width="914">
-	<tr><th>Site</th><th>Location</th><th>Date</th></tr>
+	<tr><th>Site</th><th>Location</th><th>Date</th><th>Status</th></tr>
 	{% for assignment in assignments %}
 	<tr><td><a href="{% url assignment assignment.id %}">{{ assignment.checklist.site.name }}</td>
 		<td>{{ assignment.checklist.site.location }}</td>
-		<td>{{ assignment.checklist.due_date }}</td></tr>
+		<td>{{ assignment.checklist.due_date }}</td>
+		<td align="center">{% if assignment.submitted %}
+				{% if assignment.approved %}
+					<img src="/media/images/accept.png" alt="approved"/>
+				{% else %}
+					<img src="/media/images/hourglass.png" alt="submitted"/>					
+				{% endif %}
+			{% else %}
+				<img src="/media/images/paste_plain.png" alt="open" />
+			{% endif %}
+				</td></tr>
 	{% empty %}
 	<tr><td colspan="2">You have no assignments</td></tr>
 	{% endfor %}

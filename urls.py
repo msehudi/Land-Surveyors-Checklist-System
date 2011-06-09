@@ -11,8 +11,8 @@ urlpatterns = patterns('',
     # url(r'^$', 'surveyor.views.home', name='home'),
     # url(r'^surveyor/', include('surveyor.foo.urls')),
 
-	url(r'^$', redirect_to, {'url' : '/checklist/login/'}),
-	url(r'^checklist/', include('checklist.urls')),
+	url(r'^$', redirect_to, {'url' : '/dashboard/login/'}),
+	url(r'^dashboard/', include('checklist.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

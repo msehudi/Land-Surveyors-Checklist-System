@@ -15,7 +15,7 @@
 
 {% block content %}
 
-<form method="post" action="#">
+<form method="post" action="{% url submitChecklist %}">
 	{% csrf_token %}
 	<table border="1" cellpadding="2" width="914">
 		<tr><th>Status</th><th>Description</th></tr>
@@ -32,6 +32,9 @@
 		<br />
 		<center><input type="submit" value="Submit Checklist For Review" /></center>
 	{% endif %}
+	<input type="hidden" name="assignment" value="{{assignment.id}}" />
+	<input type="hidden" name="checklist" value="{{checklist.id}}" />
+	
 </form>
 
 {% endblock %}
