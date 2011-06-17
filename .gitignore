@@ -1,4 +1,5 @@
 *.pyc
+*.DS_Store
 local_settings.py
 checklist/migrations/0001_initial.py
 checklist/migrations/__init__.py
