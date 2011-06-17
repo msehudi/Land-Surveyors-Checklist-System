@@ -16,7 +16,10 @@ class ChecklistAdmin(admin.ModelAdmin):
 	list_filter = ['created_date', 'due_date']
 	search_fields = ['title', 'description', 'location']
 
-
+class AssignmentAdmin(admin.ModelAdmin):
+	fieldsets = [
+		(None, {'fields' : ('surveyor','checklist', 'status','approved')}),
+	]
 
 admin.site.register(Checklist, ChecklistAdmin)
 admin.site.register(Task)

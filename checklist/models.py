@@ -58,6 +58,16 @@ class Assignment(models.Model):
 	date = models.DateField() 
 	submitted = models.BooleanField(default=False)
 	approved = models.BooleanField(default=False)
+	submission_datetime = models.DateTimeField(blank=True, null=True)
+	
+	def status(self):
+		if self.submitted:
+			if self.approved:
+				return 'approved'
+			else:
+				return 'submitted'
+		else:
+			return 'open'
 	
 	def __unicode__(self):
 		return u"%s : %s" % (self.surveyor.last_name, self.checklist.title)
